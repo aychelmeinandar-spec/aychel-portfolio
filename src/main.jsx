@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
@@ -15,8 +16,9 @@ import {
   MonitorSmartphone,
 } from "lucide-react";
 import "./style.css";
+import Lanyard from "./component/Lanyard";
 
-const githubUrl = "https://github.com/Aychel Gusti Meinandar";
+const githubUrl = "https://github.com/aychelmeinandar-spec";
 const instagramUrl = "https://www.instagram.com/aychel_gm/";
 
 const projects = [
@@ -134,39 +136,6 @@ function App() {
   }, []);
 
 
-
-useEffect(() => {
-  const art = document.querySelector(".hero-art");
-
-  if (!art) return;
-
-  const handleMouseMove = (event) => {
-    const rect = art.getBoundingClientRect();
-
-    const x = (event.clientX - rect.left) / rect.width;
-    const y = (event.clientY - rect.top) / rect.height;
-
-    const rotateY = (x - 0.5) * 18;
-    const rotateX = (0.5 - y) * 14;
-
-    art.style.transform =
-      `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-  };
-
-  const resetRotation = () => {
-    art.style.transform =
-      "perspective(1000px) rotateX(0deg) rotateY(0deg)";
-  };
-
-  art.addEventListener("pointermove", handleMouseMove);
-  art.addEventListener("pointerleave", resetRotation);
-
-  return () => {
-    art.removeEventListener("pointermove", handleMouseMove);
-    art.removeEventListener("pointerleave", resetRotation);
-  };
-}, []);
-
 // Efek kartu proyek 3D mengikuti posisi kursor.
 useEffect(() => {
   const cards = document.querySelectorAll(".project-card");
@@ -271,7 +240,7 @@ useEffect(() => {
             >
              <img
                src="/profile-aychel.jpg"
-                 alt="Foto profil Aychel"
+                 alt="Foto Aychel"
                />
                 <span className="profile-avatar-hint">
                  View profile ↗
@@ -328,35 +297,17 @@ useEffect(() => {
             </div>
           </div>
 
-          <div className="hero-art" aria-label="Ilustrasi abstrak teknologi">
-            <div className="orbit orbit-one" />
-            <div className="orbit orbit-two" />
-            <div className="orbit orbit-three" />
-
-            <div className="core">
-              <Code2 size={58} strokeWidth={1.2} />
-              <span>
-                CREATIVE
-                <br />
-                DEVELOPER
-              </span>
+          <div className="hero-art lanyard-hero">
+            <Lanyard
+              frontImage="/profile-aychel.jpg"
+           backImage="/profile-aychel.jpg"
+             imageFit="cover"
+             cardColor="#ffffff"
+             orientation="portrait"
+             size={0.7}
+           interactive={true}
+          />
             </div>
-
-            <div className="float-card card-top">
-              <span className="mini-dot" />
-              building something new
-            </div>
-
-            <div className="float-card card-bottom">
-              <span className="mono">&lt;/&gt;</span>
-              <div>
-                <b>Curiosity first.</b>
-                <small>Always learning</small>
-              </div>
-            </div>
-
-            <span className="art-index">FIG. 001 — DIGITAL CRAFT</span>
-          </div>
 
           <div className="hero-bottom">
             <span>SCROLL TO EXPLORE</span>
@@ -545,32 +496,56 @@ useEffect(() => {
             <span className="label-rule" />
           </div>
 
-          <div className="stack-row">
-            <div className="stack-heading">
-              <h2>Tools &amp; capabilities.</h2>
-              <p>
-                Teknologi dan tools yang kugunakan untuk membangun pengalaman
-                web yang fungsional.
-              </p>
+          <div className="tech-stack-heading">
+            <h2>Tools &amp; capabilities.</h2>
+            <p>
+              Teknologi dan tools yang kugunakan untuk membangun pengalaman
+              web yang fungsional, responsif, dan menarik.
+            </p>
+          </div>
+
+          <div className="tech-marquee" aria-label="Daftar teknologi dan tools">
+            <div className="tech-marquee-row">
+              <div className="tech-marquee-track">
+                {[...toolItems, { name: "Responsive UI", description: "All screens", className: "responsive-logo", image: null }, ...toolItems, { name: "Responsive UI", description: "All screens", className: "responsive-logo", image: null }].map((tool, index) => (
+                  <article
+                    className="tech-card"
+                    key={`top-${tool.name}-${index}`}
+                    aria-hidden={index >= toolItems.length + 1 ? true : undefined}
+                  >
+                    <span className={`tech-card-logo ${tool.className}`}>
+                      {tool.image ? (
+                        <img src={tool.image} alt="" loading="lazy" />
+                      ) : (
+                        <MonitorSmartphone size={27} strokeWidth={1.8} />
+                      )}
+                    </span>
+                    <span className="tech-card-name">{tool.name}</span>
+                    <small>{tool.description}</small>
+                  </article>
+                ))}
+              </div>
             </div>
 
-            <div className="stack-items">
-              {toolItems.map((tool) => (
-                <div className="stack-item" key={tool.name}>
-                  <span className={`stack-logo ${tool.className}`}>
-                    <img src={tool.image} alt={tool.name} loading="lazy" />
-                  </span>
-                  <span className="stack-item-name">{tool.name}</span>
-                  <small>{tool.description}</small>
-                </div>
-              ))}
-
-              <div className="stack-item">
-                <span className="stack-logo responsive-logo">
-                  <MonitorSmartphone size={28} strokeWidth={1.8} />
-                </span>
-                <span className="stack-item-name">Responsive UI</span>
-                <small>All screens</small>
+            <div className="tech-marquee-row reverse">
+              <div className="tech-marquee-track">
+                {[...toolItems, { name: "Responsive UI", description: "All screens", className: "responsive-logo", image: null }, ...toolItems, { name: "Responsive UI", description: "All screens", className: "responsive-logo", image: null }].map((tool, index) => (
+                  <article
+                    className="tech-card"
+                    key={`bottom-${tool.name}-${index}`}
+                    aria-hidden={index >= toolItems.length + 1 ? true : undefined}
+                  >
+                    <span className={`tech-card-logo ${tool.className}`}>
+                      {tool.image ? (
+                        <img src={tool.image} alt="" loading="lazy" />
+                      ) : (
+                        <MonitorSmartphone size={27} strokeWidth={1.8} />
+                      )}
+                    </span>
+                    <span className="tech-card-name">{tool.name}</span>
+                    <small>{tool.description}</small>
+                  </article>
+                ))}
               </div>
             </div>
           </div>
@@ -683,4 +658,3 @@ createRoot(document.getElementById("root")).render(
     <App />
   </React.StrictMode>,
 );
-

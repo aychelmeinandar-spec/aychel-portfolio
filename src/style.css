@@ -1277,26 +1277,41 @@ main section.reveal.visible,
 
 /* ===== PROFILE AVATAR — FIX UKURAN DAN FRAME ===== */
 
+
+/* ===== HERO PROFILE — PREMIUM AVATAR ===== */
+
 .hero-copy .profile-avatar {
   position: relative;
   display: block;
-  width: 104px;
-  height: 104px;
-  min-width: 104px;
-  padding: 4px;
-  margin: 0 0 24px;
+  width: 150px;
+  height: 150px;
+  min-width: 150px;
+  padding: 5px;
+  margin: 0 0 30px;
+
   overflow: hidden;
-  border: 1px solid rgba(220, 205, 180, 0.65);
+  border: 1px solid rgba(220, 205, 180, 0.7);
   border-radius: 50%;
   background: rgba(220, 205, 180, 0.08);
   cursor: pointer;
-  box-shadow: 0 0 0 5px rgba(220, 205, 180, 0.05);
-  transition: transform 250ms ease, box-shadow 250ms ease;
+
+  box-shadow:
+    0 0 0 5px rgba(220, 205, 180, 0.06),
+    0 0 0 10px rgba(220, 205, 180, 0.025),
+    0 12px 35px rgba(0, 0, 0, 0.22);
+
+  transition:
+    transform 300ms ease,
+    box-shadow 300ms ease;
 }
 
 .hero-copy .profile-avatar:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 0 7px rgba(220, 205, 180, 0.09);
+  transform: translateY(-5px) scale(1.025);
+
+  box-shadow:
+    0 0 0 6px rgba(220, 205, 180, 0.09),
+    0 0 30px rgba(220, 205, 180, 0.12),
+    0 16px 40px rgba(0, 0, 0, 0.25);
 }
 
 .hero-copy .profile-avatar img {
@@ -1310,12 +1325,18 @@ main section.reveal.visible,
   border-radius: 50%;
 }
 
+/* Petunjuk saat foto diarahkan kursor */
 .hero-copy .profile-avatar-hint {
   position: absolute;
   inset: auto 0 0;
-  padding: 14px 0 8px;
+  padding: 18px 0 9px;
+
   color: #fff;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+  background: linear-gradient(
+    transparent,
+    rgba(0, 0, 0, 0.78)
+  );
+
   font-size: 10px;
   text-align: center;
   opacity: 0;
@@ -1326,218 +1347,702 @@ main section.reveal.visible,
   opacity: 1;
 }
 
+/* Ukuran lebih proporsional untuk HP */
 @media (max-width: 600px) {
   .hero-copy .profile-avatar {
-    width: 86px;
-    height: 86px;
-    min-width: 86px;
-    margin-bottom: 20px;
+    width: 112px;
+    height: 112px;
+    min-width: 112px;
+    margin-bottom: 24px;
   }
 }
 
 
-/* Foto profil di bawah logo navbar */
-.nav-brand {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-}
 
-.nav-brand .profile-avatar {
-  width: 54px;
-  height: 54px;
-  min-width: 54px;
-  margin: 0;
-  padding: 3px;
-}
-
-.nav-brand .profile-avatar img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: center 25%;
-  border-radius: 50%;
-}
-
-.nav-brand .profile-avatar-hint {
-  display: none;
-}
-
-
-
-/* Pop-up foto profil */
-.profile-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
+/* Gooey-style navigation */
+.nav-links {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 24px;
-  background: rgba(12, 10, 9, 0.82);
-  backdrop-filter: blur(10px);
-  animation: profileFadeIn 250ms ease;
-}
-
-.profile-modal-content {
-  position: relative;
-  width: min(420px, 100%);
-  padding: 12px;
-  border: 1px solid rgba(231, 220, 202, 0.35);
-  border-radius: 22px;
-  background: #211d19;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
-  text-align: center;
-  animation: profileZoomIn 300ms ease;
-}
-
-.profile-modal-image {
-  display: block;
-  width: 100%;
-  max-height: 72vh;
-  object-fit: contain;
-  border-radius: 14px;
-  background: #171411;
-}
-
-.profile-modal-content p {
-  margin: 16px 0 5px;
-  color: #eee4d5;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 2px;
-}
-
-.profile-modal-content span {
-  color: #a9a096;
-  font-size: 10px;
-  letter-spacing: 2px;
-}
-
-.profile-modal-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 2;
-  width: 36px;
-  height: 36px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  background: rgba(20, 18, 16, 0.85);
-  color: white;
-  font-size: 25px;
-  cursor: pointer;
-}
-
-.profile-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.78);
-  backdrop-filter: blur(8px);
-  animation: profileFadeIn 250ms ease;
-}
-
-.profile-card-style {
-  position: relative;
-  width: min(360px, 100%);
-  overflow: hidden;
-  border: 1px solid #292b30;
-  border-radius: 14px;
-  background: #08090c;
-  color: #f5f5f5;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-  animation: profileZoomIn 300ms ease;
-}
-
-.profile-card-style .profile-modal-image {
-  display: block;
-  width: 100%;
-  max-height: 400px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 0;
-  background: #08090c;
-}
-
-.profile-info {
-  padding: 14px 16px 16px;
-  text-align: center;
-}
-
-.profile-info h3 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
   gap: 6px;
-  margin: 0 0 8px;
-  font-size: 16px;
-  font-weight: 700;
-  color: #f5f5f5;
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
-.verified-mark {
+.nav-links a {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 17px;
-  height: 17px;
-  border-radius: 50%;
-  background: #3988f7;
-  color: white;
-  font-size: 12px;
-  font-weight: 800;
+  padding: 10px 18px;
+  border-radius: 999px;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
-.profile-info p {
-  display: inline-block;
+.nav-links a:hover {
+  background: rgba(214, 190, 157, 0.2);
+  transform: translateY(-2px);
+}
+
+.nav-links a:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    gap: 4px;
+    padding: 5px;
+  }
+
+  .nav-links a {
+    padding: 9px 12px;
+  }
+}
+
+
+/* ===== TECH STACK INFINITE MARQUEE ===== */
+.tech-stack-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 42px 0 28px;
+}
+
+.tech-stack-heading h2 {
   margin: 0;
-  padding: 2px 4px;
-  background: #263f70;
-  color: #e6edff;
-  font-family: monospace;
+  font-size: clamp(34px, 4.5vw, 54px);
+  line-height: 1.1;
+  letter-spacing: -0.055em;
+}
+
+.tech-stack-heading p {
+  max-width: 360px;
+  margin: 0;
+  color: var(--text-secondary, #b9afa2);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.tech-marquee {
+  display: grid;
+  gap: 14px;
+  width: 100%;
+  overflow: hidden;
+  padding: 8px 0 12px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+
+.tech-marquee-row {
+  width: 100%;
+  overflow: hidden;
+}
+
+.tech-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 14px;
+  animation: tech-marquee-left 34s linear infinite;
+  will-change: transform;
+}
+
+.tech-marquee-row.reverse .tech-marquee-track {
+  animation-name: tech-marquee-right;
+  animation-duration: 39s;
+}
+
+.tech-marquee:hover .tech-marquee-track {
+  animation-play-state: paused;
+}
+
+.tech-card {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 0 174px;
+  min-height: 116px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 9px;
+  padding: 16px 18px;
+  border: 1px solid rgba(226, 211, 192, 0.15);
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(226, 211, 192, 0.055), rgba(226, 211, 192, 0.018));
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+
+.tech-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(208, 182, 154, 0.48);
+  background: rgba(226, 211, 192, 0.075);
+}
+
+.tech-card-logo {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(226, 211, 192, 0.13);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.tech-card-logo img {
+  display: block;
+  width: 23px;
+  height: 23px;
+  object-fit: contain;
+}
+
+.tech-card-name {
+  color: var(--text, #e8dfd2);
   font-size: 12px;
   font-weight: 600;
+  line-height: 1.25;
 }
 
-.profile-card-style .profile-modal-close {
+.tech-card small {
+  color: var(--text-muted, #95897c);
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+@keyframes tech-marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes tech-marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+@media (max-width: 700px) {
+  .tech-stack-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 34px;
+  }
+
+  .tech-stack-heading p {
+    max-width: 520px;
+    font-size: 12px;
+  }
+
+  .tech-card {
+    flex-basis: 148px;
+    min-height: 108px;
+    padding: 13px 14px;
+  }
+
+  .tech-marquee-track {
+    gap: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-marquee-track,
+  .tech-marquee-row.reverse .tech-marquee-track {
+    animation: none;
+  }
+
+  .tech-marquee-row {
+    overflow-x: auto;
+  }
+}
+
+
+
+/* ===== UPDATE UI: TECH STACK MINIMALIS ===== */
+
+/* Hilangkan scrollbar yang mengganggu */
+.tech-marquee,
+.tech-marquee-row,
+.tech-marquee-track {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.tech-marquee::-webkit-scrollbar,
+.tech-marquee-row::-webkit-scrollbar,
+.tech-marquee-track::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Pastikan animasi tetap berjalan tanpa scrollbar */
+.tech-marquee {
+  display: grid;
+  gap: 22px;
+  width: 100%;
+  overflow: hidden !important;
+}
+
+.tech-marquee-row {
+  overflow: hidden !important;
+}
+
+.tech-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 30px;
+}
+
+/* Hilangkan background dan border kartu */
+.tech-card {
+  flex: 0 0 150px;
+  min-height: 115px;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0;
+  box-shadow: none !important;
+
+  transition: transform 0.25s ease;
+}
+
+/* Hover sederhana tanpa kotak background */
+.tech-card:hover {
+  transform: translateY(-4px);
+  background: transparent !important;
+  border-color: transparent !important;
+}
+
+/* Hilangkan kotak di belakang logo */
+.tech-card-logo {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0;
+  box-shadow: none !important;
+}
+
+.tech-card-logo img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* Nama teknologi */
+.tech-card-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text, #e8dfd2);
+}
+
+.tech-card small {
+  font-size: 10px;
+  color: var(--text-muted, #95897c);
+}
+
+/* Responsif untuk HP */
+@media (max-width: 700px) {
+  .tech-marquee {
+    gap: 18px;
+  }
+
+  .tech-marquee-track {
+    gap: 22px;
+  }
+
+  .tech-card {
+    flex-basis: 125px;
+    min-height: 100px;
+    padding: 10px 8px;
+  }
+}
+
+
+/* ===== FIX: PROJECT CARD TIDAK MENGHILANG SAAT HOVER ===== */
+
+/* Kartu yang sudah muncul harus tetap terlihat */
+.project-card.reveal.visible,
+.project-card.reveal.visible:hover {
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: blur(0) !important;
+}
+
+/* Hover tetap halus dan tidak membuat kartu menghilang */
+@media (hover: hover) and (pointer: fine) {
+  .project-card.reveal.visible:hover {
+    transform:
+      perspective(1100px)
+      rotateX(var(--tilt-x, 0deg))
+      rotateY(var(--tilt-y, 0deg))
+      translateY(-7px)
+      scale(1.012);
+
+    opacity: 1 !important;
+    filter: blur(0) !important;
+  }
+}
+
+/* Hormati preferensi pengguna yang mengurangi animasi */
+@media (prefers-reduced-motion: reduce) {
+  .project-card.reveal,
+  .project-card.reveal.visible,
+  .project-card.reveal.visible:hover {
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    transform: none !important;
+  }
+}
+
+
+/* ===== FINAL HERO + REACT BITS LANYARD ===== */
+.hero-copy .profile-avatar {
+  display: none !important;
+}
+
+.hero {
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr) !important;
+  column-gap: clamp(12px, 3vw, 44px);
+}
+
+.hero-copy {
+  width: 100%;
+  max-width: 760px;
+}
+
+.hero-intro {
+  max-width: 540px;
+}
+
+.hero-art.lanyard-hero {
+  display: block !important;
+  width: 100%;
+  height: 520px;
+  min-height: 420px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transform: none !important;
+  touch-action: pan-y;
+}
+
+.hero-art.lanyard-hero::before {
+  content: "";
   position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 2;
-  width: 32px;
-  height: 32px;
-  border: 1px solid #555;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  font-size: 23px;
-  cursor: pointer;
+  width: 240px;
+  height: 240px;
+  left: 50%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(167,139,250,.16), transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: -1;
 }
 
-.profile-card-style .profile-modal-close:hover {
-  background: #3988f7;
+.hero-art.lanyard-hero .lanyard {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
 }
 
-@keyframes profileFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.hero-art.lanyard-hero canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  outline: none;
 }
 
-@keyframes profileZoomIn {
+@media (max-width: 800px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) !important;
+    padding-top: 54px;
+  }
+
+  .hero-copy {
+    max-width: 100%;
+  }
+
+  .hero-art.lanyard-hero {
+    height: 440px;
+    min-height: 380px;
+    margin-top: 10px;
+  }
+
+  .hero-art.lanyard-hero .lanyard {
+    min-height: 380px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-art.lanyard-hero {
+    height: 360px;
+    min-height: 340px;
+  }
+
+  .hero-art.lanyard-hero .lanyard {
+    min-height: 340px;
+  }
+}
+
+
+/* =========================================
+   TOOLS MARQUEE — AYCH EL / WARM EDITORIAL
+========================================= */
+
+.tech-stack-heading {
+  max-width: 700px;
+  margin: 0 0 32px;
+}
+
+.tech-stack-heading h2 {
+  margin: 0 0 14px;
+  color: var(--text, #e9e0d4);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+  font-weight: 750;
+}
+
+.tech-stack-heading p {
+  max-width: 580px;
+  margin: 0;
+  color: var(--text-secondary, #c1b5a6);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* Area marquee */
+.tech-marquee {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  overflow: hidden;
+  padding: 8px 0 14px;
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 7%,
+    #000 93%,
+    transparent
+  );
+
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 7%,
+    #000 93%,
+    transparent
+  );
+}
+
+.tech-marquee-row {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.tech-marquee-track {
+  display: flex;
+  width: max-content;
+  flex: 0 0 auto;
+  gap: 16px;
+  padding-right: 16px;
+  animation: aychel-marquee 28s linear infinite;
+  will-change: transform;
+}
+
+/* Baris kedua bergerak berlawanan arah */
+.tech-marquee-row.reverse .tech-marquee-track {
+  animation-direction: reverse;
+  animation-duration: 32s;
+}
+
+/* Berhenti sementara saat kursor diarahkan ke kartu */
+.tech-marquee:hover .tech-marquee-track {
+  animation-play-state: paused;
+}
+
+/* Kartu teknologi */
+.tech-card {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 0 158px;
+  min-height: 150px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+
+  padding: 20px 14px;
+  border: 1px solid rgba(226, 211, 192, 0.14);
+  border-radius: 20px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.055),
+    rgba(255, 255, 255, 0.015)
+  );
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+
+  transition:
+    border-color 220ms ease,
+    background 220ms ease,
+    transform 220ms ease;
+}
+
+.tech-card:hover {
+  border-color: rgba(208, 182, 154, 0.45);
+  background: rgba(208, 182, 154, 0.075);
+  transform: translateY(-4px);
+}
+
+/* Kotak logo */
+.tech-card-logo {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(226, 211, 192, 0.13);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.tech-card-logo img {
+  display: block;
+  width: 27px;
+  height: 27px;
+  object-fit: contain;
+}
+
+/* Nama teknologi */
+.tech-card-name {
+  color: var(--text, #e9e0d4);
+  font-size: 0.88rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+/* Keterangan */
+.tech-card small {
+  color: var(--text-muted, #95897c);
+  font-size: 0.74rem;
+  line-height: 1.4;
+}
+
+/* Animasi berjalan tanpa jeda */
+@keyframes aychel-marquee {
   from {
-    opacity: 0;
-    transform: scale(0.95);
+    transform: translateX(0);
   }
+
   to {
-    opacity: 1;
-    transform: scale(1);
+    transform: translateX(-50%);
   }
 }
+
+/* Tablet */
+@media (max-width: 768px) {
+  .tech-stack-heading {
+    margin-bottom: 24px;
+  }
+
+  .tech-marquee {
+    gap: 12px;
+  }
+
+  .tech-marquee-track {
+    gap: 12px;
+    padding-right: 12px;
+    animation-duration: 24s;
+  }
+
+  .tech-marquee-row.reverse .tech-marquee-track {
+    animation-duration: 28s;
+  }
+
+  .tech-card {
+    flex-basis: 135px;
+    min-height: 138px;
+    padding: 17px 12px;
+    border-radius: 17px;
+  }
+}
+
+/* HP */
+@media (max-width: 480px) {
+  .tech-stack-heading h2 {
+    font-size: 2rem;
+  }
+
+  .tech-stack-heading p {
+    font-size: 0.92rem;
+  }
+
+  .tech-card {
+    flex-basis: 120px;
+    min-height: 128px;
+    gap: 9px;
+    padding: 14px 10px;
+  }
+
+  .tech-card-logo {
+    width: 42px;
+    height: 42px;
+    flex-basis: 42px;
+  }
+
+  .tech-card-logo img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .tech-card-name {
+    font-size: 0.8rem;
+  }
+
+  .tech-card small {
+    font-size: 0.68rem;
+  }
+}
+
+/* Hormati pengaturan reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .tech-marquee-track {
+    animation: none;
+    transform: none;
+  }
+
+  .tech-marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
