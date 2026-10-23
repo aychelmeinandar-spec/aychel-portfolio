@@ -22,18 +22,20 @@ const githubUrl = "https://github.com/aychelmeinandar-spec";
 const instagramUrl = "https://www.instagram.com/aychel_gm/";
 
 const projects = [
-  {
-    no: "01",
-    name: "Website Toko Online",
-    type: "E-COMMERCE",
-    description:
-      "Website toko online untuk menampilkan produk dan membantu pengunjung menjelajahi katalog belanja. Tambahkan fitur dan teknologi spesifik sesuai implementasi proyekmu.",
-    tags: ["E-commerce", "Product Catalog", "Web Development"],
-    accent: "violet",
-    link: githubUrl,
-    previewUrl: "",
-    sourceUrl: "",
-  },
+  
+{
+  no: "01",
+  name: "Website AI Agent",
+  type: "AI AGENT / CHATBOT",
+  description:
+    "Website AI Agent interaktif yang membantu pengguna mendapatkan jawaban, berdiskusi, dan menyelesaikan kebutuhan melalui percakapan berbasis kecerdasan buatan.",
+  tags: ["Artificial Intelligence", "Gemini API", "React"],
+  accent: "violet",
+  link: githubUrl,
+  previewUrl: "https://tugasin-web.vercel.app/",
+  sourceUrl: "",
+},
+
   {
     no: "02",
     name: "Website Toko Obat",

@@ -1,0 +1,144 @@
+/* PROJECT CARD SWAP — styles scoped only to the Projects section */
+.project-swap {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 34px auto 12px;
+}
+
+.project-swap-stage {
+  position: relative;
+  width: 100%;
+  min-height: 620px;
+  perspective: 1400px;
+  isolation: isolate;
+}
+
+.project-swap-card {
+  position: absolute !important;
+  inset: 12px 5% auto !important;
+  width: 90% !important;
+  max-width: 720px;
+  margin: 0 auto !important;
+  box-sizing: border-box;
+  transform-origin: 50% 100%;
+  transform:
+    translate3d(calc(var(--swap-position) * 17px), calc(var(--swap-position) * -13px), calc(var(--swap-position) * -65px))
+    rotate(calc(var(--swap-position) * 2.2deg))
+    scale(calc(1 - var(--swap-position) * 0.045));
+  opacity: calc(1 - var(--swap-position) * 0.16);
+  z-index: calc(20 - var(--swap-position));
+  transition:
+    transform 760ms cubic-bezier(.2,.75,.25,1),
+    opacity 600ms ease,
+    filter 600ms ease;
+  filter: blur(calc(var(--swap-position) * 0.45px));
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .24);
+}
+
+.project-swap-card[aria-hidden="true"] {
+  pointer-events: none;
+  user-select: none;
+}
+
+.project-swap-card[aria-hidden="false"] {
+  pointer-events: auto;
+}
+
+.project-swap-card .project-visual {
+  min-height: 180px;
+}
+
+.project-swap-card .mock-window {
+  width: 100%;
+}
+
+.project-swap-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 14px;
+  color: var(--text-muted, #95897c);
+  font-size: .75rem;
+  letter-spacing: .12em;
+}
+
+.project-swap-control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border, rgba(226, 211, 192, .18));
+  border-radius: 50%;
+  color: var(--text, #e9e0d4);
+  background: rgba(255, 255, 255, .035);
+  cursor: pointer;
+  transition: background 180ms ease, transform 180ms ease, border-color 180ms ease;
+}
+
+.project-swap-control:hover {
+  background: rgba(208, 182, 154, .12);
+  border-color: rgba(208, 182, 154, .45);
+  transform: translateY(-2px);
+}
+
+.project-swap-previous-icon {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 768px) {
+  .project-swap {
+    margin-top: 22px;
+  }
+
+  .project-swap-stage {
+    min-height: 650px;
+    perspective: 1000px;
+  }
+
+  .project-swap-card {
+    inset: 10px 2% auto !important;
+    width: 96% !important;
+    transform:
+      translate3d(calc(var(--swap-position) * 8px), calc(var(--swap-position) * -10px), calc(var(--swap-position) * -45px))
+      rotate(calc(var(--swap-position) * 1.3deg))
+      scale(calc(1 - var(--swap-position) * 0.035));
+  }
+
+  .project-swap-card .project-visual {
+    min-height: 130px;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-swap-stage {
+    min-height: 700px;
+  }
+
+  .project-swap-card {
+    inset: 8px 0 auto !important;
+    width: 100% !important;
+  }
+
+  .project-swap-card .project-info p {
+    font-size: .85rem;
+    line-height: 1.65;
+  }
+
+  .project-swap-card .tag-row {
+    flex-wrap: wrap;
+  }
+
+  .project-swap-card .project-actions {
+    flex-wrap: wrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-swap-card,
+  .project-swap-control {
+    transition: none !important;
+  }
+}
